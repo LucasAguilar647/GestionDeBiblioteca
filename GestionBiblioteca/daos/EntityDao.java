@@ -1,4 +1,4 @@
-package GestionBiblioteca.dao;
+package daos;
 
 import java.util.Optional;
 

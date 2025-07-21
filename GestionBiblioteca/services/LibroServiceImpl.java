@@ -1,9 +1,8 @@
-package service;
+package services;
 
-import GestionBiblioteca.dao.LibroDAO;
-import GestionBiblioteca.dao.EntityDao;
-import GestionBiblioteca.dto.LibroDTO;
-import GestionBiblioteca.entity.Libro;
+import daos.EntityDao;
+import dtos.LibroDTO;
+import entities.Libro;
 import java.util.Optional;
 
 public class LibroServiceImpl implements LibroService {
