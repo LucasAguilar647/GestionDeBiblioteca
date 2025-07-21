@@ -1,0 +1,21 @@
+import GestionBiblioteca.controller.LibroController;
+import GestionBiblioteca.dao.LibroDAO;
+import GestionBiblioteca.dto.LibroDTO;
+import GestionBiblioteca.entity.Libro;
+import service.LibroServiceImpl;
+
+public class Main {
+    public static void main(String[] args) {
+
+        LibroDAO dao = new LibroDAO();
+        LibroServiceImpl service = new LibroServiceImpl(dao);
+        LibroController controller = new LibroController(service);
+
+
+        controller.agregarLibro(new LibroDTO(null, "El Principito", "Saint-Exupéry", 1943));
+        controller.agregarLibro(new LibroDTO(null, "", "Sin Título", 2020));
+
+        controller.obtenerLibroPorId(1);
+        controller.obtenerLibroPorId(99); 
+    }
+}
