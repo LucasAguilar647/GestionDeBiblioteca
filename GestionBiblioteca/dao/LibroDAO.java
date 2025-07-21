@@ -1,24 +1,36 @@
 package GestionBiblioteca.dao;
 
 import GestionBiblioteca.entity.Libro;
-import jdk.jshell.spi.ExecutionControl;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class LibroDAO {
     private final Map<Long, Libro> data;
+    private Long lastIdAdded = 0L;
 
-    public LibroDAO(Map<Long, Libro> data) {
-        this.data = data;
+    public LibroDAO() {
+        this.data = new HashMap<>();
     }
 
 
     public Optional<Libro> findById(Long id) {
-        throw new ExecutionControl.NotImplementedException("");
+        if (!data.containsKey(id)) {
+            return Optional.empty();
+        }
+        return Optional.of(data.get(id));
     }
 
     public void Save(Libro newLibro) {
-        throw new ExecutionControl.NotImplementedException("");
+        if (newLibro.getId() != 0) {
+            throw new IndexOutOfBoundsException("El libro ya posee un Id distinto de cero. Esto no está soportado.");
+        }
+        newLibro.setId(nextId());
+        data.putIfAbsent(newLibro.getId(), newLibro);
+    }
+
+    private Long nextId() {
+        return ++lastIdAdded;
     }
 }
