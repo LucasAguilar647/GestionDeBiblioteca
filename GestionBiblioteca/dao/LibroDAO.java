@@ -6,14 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class LibroDAO {
+public class LibroDAO implements EntityDao<Libro> {
     private final Map<Long, Libro> data;
     private Long lastIdAdded = 0L;
 
     public LibroDAO() {
         this.data = new HashMap<>();
     }
-
 
     public Optional<Libro> findById(Long id) {
         if (!data.containsKey(id)) {
