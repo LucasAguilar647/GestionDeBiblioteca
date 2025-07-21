@@ -1,13 +1,15 @@
 package service;
 
 import GestionBiblioteca.dao.LibroDAO;
+import GestionBiblioteca.dao.EntityDao;
 import GestionBiblioteca.dto.LibroDTO;
+import GestionBiblioteca.entity.Libro;
 
 public class LibroServiceImpl implements LibroService {
 
-    private final LibroDAO libroDAO;
+    private final EntityDao<Libro> libroDAO;
 
-    public LibroServiceImpl(LibroDAO libroDAO) {
+    public LibroServiceImpl(EntityDao<Libro> libroDAO) {
         this.libroDAO = libroDAO;
     }
 
