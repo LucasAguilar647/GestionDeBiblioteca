@@ -1,7 +1,7 @@
-package controller;
+package controllers;
 
-import dto.LibroDTO;
-import service.LibroService;
+import dtos.LibroDTO;
+import services.LibroService;
 
 public class LibroController {
     private final LibroService service;

@@ -1,8 +1,7 @@
-import GestionBiblioteca.controller.LibroController;
-import GestionBiblioteca.dao.LibroDAO;
-import GestionBiblioteca.dto.LibroDTO;
-import GestionBiblioteca.entity.Libro;
-import service.LibroServiceImpl;
+import controllers.LibroController;
+import daos.LibroDAO;
+import dtos.LibroDTO;
+import services.LibroServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
