@@ -1,5 +1,9 @@
-package GestionBiblioteca.service;
+package service;
 
-public class LibroService {
-    
+import GestionBiblioteca.dto.LibroDTO;
+
+public interface LibroService {
+
+    void agregarLibro(LibroDTO libroDTO);
+    LibroDTO obtenerLibroPorId(long id);
 }
