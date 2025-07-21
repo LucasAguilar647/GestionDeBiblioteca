@@ -1,6 +1,6 @@
-package GestionBiblioteca.dao;
+package daos;
 
-import GestionBiblioteca.entity.Libro;
+import entities.Libro;
 
 import java.util.HashMap;
 import java.util.Map;

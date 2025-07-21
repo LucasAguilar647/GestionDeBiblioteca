@@ -1,4 +1,4 @@
-package GestionBiblioteca.dto;
+package dtos;
 
 
 public class LibroDTO {
