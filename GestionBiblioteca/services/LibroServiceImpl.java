@@ -30,12 +30,13 @@ public class LibroServiceImpl implements LibroService {
         }
 
         Libro libro = new Libro(
-                libroDTO.getId(),
+                libroDTO.getId() != null ? libroDTO.getId() : 0L,
                 libroDTO.getTitulo(),
                 libroDTO.getAutor(),
                 libroDTO.getAnioPublicacion(),
-                true // Asumimos que el libro está disponible al agregarlo
+                true
         );
+
 
         libroDAO.Save(libro);
     }
