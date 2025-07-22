@@ -11,10 +11,10 @@ public class Main {
         LibroController controller = new LibroController(service);
 
 
-        controller.agregarLibro(new LibroDTO(null, "El Principito", "Saint-Exupéry", 1943));
-        controller.agregarLibro(new LibroDTO(null, "", "Sin Título", 2020));
+        controller.PostLibro(new LibroDTO(null, "El Principito", "Saint-Exupéry", 1943));
+        controller.PostLibro(new LibroDTO(null, "", "Sin Título", 2020));
 
-        controller.obtenerLibroPorId(1);
-        controller.obtenerLibroPorId(99); 
+        controller.getLibro(1);
+        controller.getLibro(99); 
     }
 }
