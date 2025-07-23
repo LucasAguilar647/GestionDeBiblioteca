@@ -1,6 +1,7 @@
 package controllers;
 
 import dtos.LibroDTO;
+import entities.Libro;
 import services.LibroService;
 
 public class LibroController {
@@ -10,11 +11,30 @@ public class LibroController {
         this.service = service;
     }
 
-    public LibroDTO getLibro(long id) {
-        return service.obtenerLibroPorId(id);
+    public ApiResponse getLibro(long id) {
+        ApiResponse response = new ApiResponse();
+        try {
+            LibroDTO result = service.obtenerLibroPorId(id);
+            response.setStatusCode(200);
+            response.setData(new LibroDTO[]{ result });
+        }
+        catch (IllegalArgumentException e) {
+            response.setStatusCode(400);
+            response.setError(e);
+        }
+        return response;
     }
 
-    public void PostLibro(LibroDTO libroDto) {
-        service.agregarLibro(libroDto);
+    public ApiResponse PostLibro(LibroDTO libroDto) {
+        ApiResponse response = new ApiResponse();
+        try {
+            service.agregarLibro(libroDto);
+            response.setStatusCode(201);
+        }
+        catch (IllegalArgumentException e) {
+            response.setStatusCode(400);
+            response.setError(e);
+        }
+        return response;
     }
 }
