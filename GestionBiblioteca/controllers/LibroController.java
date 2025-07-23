@@ -25,7 +25,7 @@ public class LibroController {
         return response;
     }
 
-    public ApiResponse PostLibro(LibroDTO libroDto) {
+    public ApiResponse postLibro(LibroDTO libroDto) {
         ApiResponse response = new ApiResponse();
         try {
             service.agregarLibro(libroDto);
