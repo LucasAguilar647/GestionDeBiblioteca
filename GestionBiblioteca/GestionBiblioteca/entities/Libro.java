@@ -1,4 +1,4 @@
-package entities;
+package GestionBiblioteca.entities;
 
 public class Libro {
     

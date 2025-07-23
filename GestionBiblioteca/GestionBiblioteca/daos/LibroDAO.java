@@ -1,17 +1,24 @@
-package daos;
+package GestionBiblioteca.daos;
 
-import entities.Libro;
+import GestionBiblioteca.entities.Libro;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
+@Component
 public class LibroDAO implements EntityDao<Libro> {
     private final Map<Long, Libro> data;
     private Long lastIdAdded = 0L;
 
     public LibroDAO() {
         this.data = new HashMap<>();
+    }
+
+
+    @Override
+    public Map<Long, Libro> getAll() {
+        return data;
     }
 
     public Optional<Libro> findById(Long id) {

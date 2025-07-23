@@ -1,16 +1,29 @@
-package services;
+package GestionBiblioteca.services;
 
-import daos.EntityDao;
-import dtos.LibroDTO;
-import entities.Libro;
+import GestionBiblioteca.daos.EntityDao;
+import GestionBiblioteca.dtos.LibroDTO;
+import GestionBiblioteca.entities.Libro;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 import java.util.Optional;
-
+@Service("libroServiceImpl")
 public class LibroServiceImpl implements LibroService {
 
     private final EntityDao<Libro> libroDAO;
 
     public LibroServiceImpl(EntityDao<Libro> libroDAO) {
         this.libroDAO = libroDAO;
+    }
+
+    @Override
+    public void cargarLibros() {
+        libroDAO.Save(new Libro(0, "¿Cómo formatear una PC?", "Luisina de Paula", 2000, true));
+        libroDAO.Save(new Libro(0, "¿Cómo mantener la seguridad?", "Gabriel Guismín", 1990, true));
+    }
+
+    public Map<Long, Libro> traerTodos(){
+        return libroDAO.getAll();
     }
 
     @Override
