@@ -1,3 +1,4 @@
+import controllers.ApiResponse;
 import controllers.LibroController;
 import daos.LibroDAO;
 import dtos.LibroDTO;
@@ -12,31 +13,40 @@ public class Main {
         LibroController controller = new LibroController(service);
 
 
-        try {
-            controller.PostLibro(new LibroDTO(null, "El Principito", "Saint-Exupéry", 1943));
-            controller.PostLibro(new LibroDTO(null, "1984", "George Orwell", 1949));
-            controller.PostLibro(new LibroDTO(null, "Sin título", "Desconocido", 2020)); // válido
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error al agregar libro: " + e.getMessage());
-        }
+        System.out.println("Agregando libros...");
+        ApiResponse res1 = controller.postLibro(new LibroDTO(null, "El Principito", "Saint-Exupéry", 1943));
+        ApiResponse res2 = controller.postLibro(new LibroDTO(null, "1984", "George Orwell", 1949));
+        ApiResponse res3 = controller.postLibro(new LibroDTO(null, "Sin título", "Desconocido", 2020));
+
+        printResponse("POST libro 1", res1);
+        printResponse("POST libro 2", res2);
+        printResponse("POST libro 3", res3);
 
 
-        try {
-            LibroDTO libro1 = controller.getLibro(1);
-            System.out.println("Libro con ID 1: " + libro1.getTitulo());
+        System.out.println("\nConsultando libros por ID...");
 
-            LibroDTO libro2 = controller.getLibro(2);
-            System.out.println("Libro con ID 2: " + libro2.getTitulo());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error al obtener libro: " + e.getMessage());
-        }
+        ApiResponse get1 = controller.getLibro(1);
+        printResponse("GET libro ID 1", get1);
 
+        ApiResponse get2 = controller.getLibro(2);
+        printResponse("GET libro ID 2", get2);
 
-        try {
-            LibroDTO libroInexistente = controller.getLibro(99);
-            System.out.println("Libro con ID 99: " + libroInexistente);
-        } catch (IllegalArgumentException e) {
-            System.out.println("No se encontró el libro con ID 99: " + e.getMessage());
+        ApiResponse get99 = controller.getLibro(99);
+        printResponse("GET libro ID 99 (no existe)", get99);
+    }
+
+    private static void printResponse(String label, ApiResponse response) {
+        System.out.println(label + ": HTTP " + response.getStatusCode());
+
+        if (response.getError() != null) {
+            System.out.println("Error: " + response.getError().getMessage());
+        } else if (response.getData() != null) {
+            for (LibroDTO libro : response.getData()) {
+                System.out.println(libro.getTitulo() + " - " + libro.getAutor() +
+                        " (" + libro.getAnioPublicacion() + ")");
+            }
+        } else {
+            System.out.println("Operación exitosa.");
         }
     }
 }
