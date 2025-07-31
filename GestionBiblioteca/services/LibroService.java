@@ -1,6 +1,7 @@
-package services;
+package GestionBiblioteca.services;
 
-import dtos.LibroDTO;
+import GestionBiblioteca.dtos.LibroDTO;
+import  GestionBiblioteca.dtos.LibroDTO;
 
 public interface LibroService {
 

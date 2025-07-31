@@ -1,8 +1,8 @@
-package services;
+package GestionBiblioteca.services;
 
-import daos.EntityDao;
-import dtos.LibroDTO;
-import entities.Libro;
+import GestionBiblioteca.daos.EntityDao;
+import GestionBiblioteca.dtos.LibroDTO;
+import GestionBiblioteca.entities.Libro;
 import java.util.Optional;
 
 public class LibroServiceImpl implements LibroService {
@@ -45,9 +45,10 @@ public class LibroServiceImpl implements LibroService {
     public LibroDTO obtenerLibroPorId(long id) {
 
         Optional<Libro> libroOptional = libroDAO.findById(id);
-        if (libroOptional.isEmpty()) {
+        if (!libroOptional.isPresent()) {
             throw new IllegalArgumentException("No se encontró un libro con el ID proporcionado");
         }
+
         Libro libro = libroOptional.get();
 
         return new LibroDTO(

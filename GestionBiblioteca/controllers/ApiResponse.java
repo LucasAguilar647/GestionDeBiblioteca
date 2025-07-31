@@ -1,6 +1,6 @@
-package controllers;
+package GestionBiblioteca.controllers;
 
-import dtos.LibroDTO;
+import GestionBiblioteca.dtos.LibroDTO;
 
 public class ApiResponse {
     private int statusCode;

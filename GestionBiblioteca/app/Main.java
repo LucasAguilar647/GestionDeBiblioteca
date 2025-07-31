@@ -1,16 +1,22 @@
-import controllers.ApiResponse;
-import controllers.LibroController;
-import daos.LibroDAO;
-import dtos.LibroDTO;
-import services.LibroServiceImpl;
+package GestionBiblioteca.app;
+
+import GestionBiblioteca.controllers.ApiResponse;
+import GestionBiblioteca.controllers.LibroController;
+import GestionBiblioteca.daos.LibroDAO;
+import GestionBiblioteca.dtos.LibroDTO;
+import GestionBiblioteca.services.LibroServiceImpl;
+
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
 
-        LibroDAO dao = new LibroDAO();
+        LibroDAO dao = new LibroDAO("jdbc:sqlite:libros.db");
         LibroServiceImpl service = new LibroServiceImpl(dao);
         LibroController controller = new LibroController(service);
+        dao.vaciarTabla();
+
 
 
         System.out.println("Agregando libros...");
