@@ -3,6 +3,7 @@ package GestionBiblioteca.app;
 import GestionBiblioteca.controllers.ApiResponse;
 import GestionBiblioteca.controllers.LibroController;
 import GestionBiblioteca.daos.LibroDAO;
+import GestionBiblioteca.daos.LibroHibernateDAO;
 import GestionBiblioteca.dtos.LibroDTO;
 import GestionBiblioteca.services.LibroServiceImpl;
 
@@ -11,8 +12,8 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-
-        LibroDAO dao = new LibroDAO("jdbc:sqlite:libros.db");
+        LibroHibernateDAO dao = new LibroHibernateDAO();
+        //LibroDAO dao = new LibroDAO("jdbc:sqlite:libros.db");
         LibroServiceImpl service = new LibroServiceImpl(dao);
         LibroController controller = new LibroController(service);
         dao.vaciarTabla();
